@@ -1,0 +1,53 @@
+## we have 50 keyword in java ##
+- 2 are not use ~ goto & const
+
+abstract - it is use in abstract class or method to make it abstract.
+continue - it skip the loop iteration.
+for - it is used when need of iteration, for-loop and enhance for-loop.
+new - new keyword used for creating new Object in java.
+switch - switch used for switch-case in java exticuting paticular case if data is matching.
+assert - assumptions about your program
+default - defalut is access modifier use in java that have scope of in the package.
+goto - goto use for jump on paticular code of the block ~ not used
+package - package used for bundling the same type of file or code to better understanding to while developing project.
+synchronized - ensuring only one thread accesses resource.
+boolean - it use for true false, defalut value is false.
+do -  it is part of the do-while loop do exciute the code without any codition
+if - for check the condition
+private - access modifier restrict the visiblity of the class or member variable.
+this - this refter to the current obj or variable.
+break - it break the loop iteration.
+double - it is primitive data type in the java, end with d, double marks = 19.99d.
+implements - it use for implementing interface.
+protected - it is access modifier, access in the same package and subclasses.
+throw - throwing the exception when needed.
+byte - one the data type, it has a range of -127 to  128.
+else - if is not exsicute it gose into else it will execute.
+import - import for importing the class,interface or any dependecy form another package.
+public - access modifier it is access across the porject
+throws - use for handling exception, mainly checked exception
+case - it is used into switch case, it represent case if that match execute paticular block.
+enum - it is the special type of the class.
+instanceof -
+return - it used for returning the value to the method call or anything.
+transient -
+catch - it is used with try-catch to cathing the exception and handle critical failur of the application.
+extends - extends used for inherited one to another.
+int - it is the primitive datatype. it store the integer data type.
+short -
+try
+char
+final
+interface
+static
+void
+class
+finally
+long
+strictfp
+volatile
+const
+float
+native
+super
+while
