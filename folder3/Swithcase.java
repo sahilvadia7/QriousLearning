@@ -7,6 +7,7 @@ public class Swithcase {
         Scanner input = new Scanner(System.in);
         double b = 1.99;
         System.out.println(b);
+
         while (i != 10) {
             System.out.println();
             System.out.println("Welcome to Menu Card");
