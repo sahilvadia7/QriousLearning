@@ -1,0 +1,19 @@
+#List
+- An ordered or mantain sequence.
+- public interface List<E> extends Collection<E>
+
+
+
+## ListIterator
+- add
+- hasNext
+- hasPrevious
+- next
+- nextIndex
+- previous
+- previousIndex
+- remove
+- set
+
+
+## Method

@@ -1,0 +1,22 @@
+# Interface Collection
+
+- The root interface in the collection hierarchy.
+- public interface Collection<E> extends Iterable<E>
+
+
+## Method
+- add(E e) ~ boolean
+- addAll(Collection<? extends E> c) ~ boolean
+- clear() ~ void
+- contains(Object o) ~ void
+- containsAll(Collection<?> c) ~ boolean
+- isEmpty() ~ boolean
+- remove(Object o) ~ boolean
+- removeAll(Collection<?> c) ~ boolean
+- removeIf(Predicate<? super E> filter) ~ boolean
+- retainAll(Collection<?> c) ~ boolean
+- size() ~ int
+- spliterator() ~ defalut Spliterator<E>
+- stream() ~ defalut stream<E>
+- toArray ~ Object[]
+- toArray(T[] a) ~ <T> T[]
