@@ -1,0 +1,18 @@
+Class : it is just share common behaviour, characteristics and comon properties.
+
+class contain
+- methods
+- variables (data member)
+- constructors
+- nested class
+- interface
+
+Types of Classes
+
+Final Class
+Static Class
+Abstract Class
+Concrete Class
+POJO Class
+Singleton Class
+Inner Class

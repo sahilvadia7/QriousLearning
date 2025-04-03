@@ -1,0 +1,90 @@
+1. Merge two sorted array in ascending order.
+
+Input1 : [1,2,5]
+Input2 : [3,4,6]
+Output : [1,2,3,4,5,6]
+
+-----------------------------------------------------------------
+
+2. Given an array of integers, find all unique combinations of elements that sum up to 9, where each element can be used once per combination. The order of elements in the combinations doesn't matter, so [1, 8] and [8, 1] should be considered the same and included only once.
+
+Input : [1,4,5,3,9,0,8,6]
+Output: [[1,8],[4,5],[6,3],[9,0]]
+
+-----------------------------------------------------------------
+
+3. You are given a list of employees, where each employee has the following attributes:
+
+ID (Unique identifier)
+Name (Employee's name)
+Department (Department where the employee works)
+Salary (Employee's salary)
+
+Your task is to find the employee with the 3rd highest salary from the given list.
+
+-----------------------------------------------------------------
+4. You are given an input in a particular format. Your task is to convert it into the required output format.
+
+Input :
+
+[
+Â  { "id": 1, "name": "John", "city": "New York" },
+Â  { "id": 2, "name": "Jane", "city": "London" },
+Â  { "id": 3, "name": "Mike", "city": "New York" }
+]
+
+Output :
+
+{
+Â  "New York": [
+Â Â Â  { "id": 1, "name": "John", "city": "New York" },
+Â Â Â  { "id": 3, "name": "Mike", "city": "New York" }
+Â  ],
+Â  "London": [
+Â Â Â  { "id": 2, "name": "Jane", "city": "London" }
+Â  ]
+}
+-----------------------------------------------------------------
+5. Find participants who have conflicting meeting schedules.
+Input :Â
+
+Meeting Name: Project Discussion Call
+Start Time: 2024-03-24T10:00Â
+End Time: 2024-03-24T11:00Â
+Participants: [Darshan, Suresh, Kunal, Rakesh]Â
+
+------------------------------------
+
+Meeting Name: Weekly Update Call
+Start Time: 2024-03-24T10:30
+End Time:2024-03-24T11:00Â
+Participants: [Neha, Rohan, Darshan, Kunal]Â
+
+------------------------------------
+
+Meeting Name: Team Meeting
+Start Time: 2025-03-26T14:00Â
+End Time: 2025-03-26T15:30Â
+Participants: [Parth, Aksh, Smit, Darshan]Â
+
+------------------------------------
+
+Meeting Name: Project Review CallÂ
+Start Time: 2025-03-26T15:00Â
+End Time: 2025-03-26T17:00Â
+Participants: [Neha, Rohan, Darshan, Kunal]
+
+------------------------------------
+
+Meeting Name: Project Demo Call
+Start Time: 2025-03-26T15:30Â
+End Time: 2025-03-26T16:30Â
+Participants: [Varun, Megha, Piyush, Darshan]Â
+
+------------------------------------
+
+Output :
+
+Darshan is not available for Weekly Update Call
+Kunal is not available for Weekly Update Call
+Darshan is not available for Project Review Call

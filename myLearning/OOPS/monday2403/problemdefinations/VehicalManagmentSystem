@@ -1,0 +1,62 @@
+## Problem Statement: Vehicle Management System for a Parking Lot
+
+Design and implement a Java-based Vehicle Management System for a multi-level parking lot. This system should be capable of managing different types of vehicles, assigning parking slots, calculating parking fees, and providing information about parked vehicles.
+
+**Requirements:**
+
+1.  **Vehicle Hierarchy (Inheritance):**
+    * Define an abstract base class named `Vehicle` with the following common attributes:
+        * `registrationNumber` (String, unique identifier)
+        * `modelName` (String)
+        * `ownerName` (String)
+        * `entryTime` (LocalDateTime, representing the time the vehicle entered the parking lot)
+    * Include abstract methods in the `Vehicle` class for:
+        * `calculateParkingFee(LocalDateTime exitTime)`: This method should calculate the parking fee based on the duration of parking. The calculation logic will vary for different vehicle types.
+        * `displayDetails()`: This method should display all the relevant details of the vehicle.
+    * Create concrete subclasses that inherit from the `Vehicle` class:
+        * `Car`: Add specific attributes like `numberOfDoors` (int) and `isElectric` (boolean). Implement `calculateParkingFee()` with a rate of ₹20 per hour for regular cars and ₹15 per hour for electric cars. Implement `displayDetails()` to include these specific attributes.
+        * `Motorcycle`: Add a specific attribute `hasSidecar` (boolean). Implement `calculateParkingFee()` with a fixed rate of ₹10 per hour. Implement `displayDetails()` to include this specific attribute.
+        * `Truck`: Add a specific attribute `loadCapacityInTons` (double). Implement `calculateParkingFee()` with a rate of ₹30 per hour for trucks with load capacity less than or equal to 5 tons, and ₹40 per hour for trucks with load capacity greater than 5 tons. Implement `displayDetails()` to include this specific attribute.
+
+2.  **Parking Slot Management (Encapsulation and Abstraction):**
+    * Create a class named `ParkingSlot` with the following private attributes:
+        * `slotNumber` (int, unique identifier for the slot)
+        * `isOccupied` (boolean, indicating if the slot is currently occupied)
+        * `parkedVehicle` (Vehicle, the vehicle currently parked in the slot, can be null if the slot is empty)
+    * Provide public getter methods for `slotNumber` and `isOccupied`.
+    * Implement methods to:
+        * `assignVehicle(Vehicle vehicle)`: Assigns a vehicle to the slot, sets `isOccupied` to true, and updates `parkedVehicle`. Throw an exception if the slot is already occupied.
+        * `removeVehicle()`: Removes the vehicle from the slot, sets `isOccupied` to false, and sets `parkedVehicle` to null. Throw an exception if the slot is already empty.
+        * `getParkedVehicleDetails()`: Returns the `displayDetails()` of the parked vehicle if any, otherwise returns a message indicating the slot is empty.
+
+3.  **Parking Lot Management (Encapsulation and Polymorphism):**
+    * Create a class named `ParkingLot` with the following private attributes:
+        * `numberOfLevels` (int)
+        * `slotsPerLevel` (int)
+        * `parkingSlots` (A data structure, like a List of Lists or a Map, to store `ParkingSlot` objects for each level).
+    * Implement methods to:
+        * `initializeParkingLot(int levels, int slots)`: Initializes the parking lot with the specified number of levels and slots per level, creating `ParkingSlot` objects for each slot.
+        * `findAvailableSlot(Vehicle vehicle)`: This method should iterate through the parking lot to find the first available parking slot that can accommodate the given vehicle. For simplicity, assume any vehicle can fit in any available slot.
+        * `parkVehicle(Vehicle vehicle)`: Finds an available slot using `findAvailableSlot()`, assigns the vehicle to that slot, and records the entry time. If no slot is available, it should return an appropriate message.
+        * `unparkVehicle(String registrationNumber, LocalDateTime exitTime)`: Searches for the vehicle with the given registration number, calculates the parking fee using the vehicle's `calculateParkingFee()` method (demonstrating polymorphism), removes the vehicle from the slot, and returns the calculated parking fee. If the vehicle is not found, it should return an appropriate message.
+        * `displayAllOccupiedSlots()`: Iterates through all parking slots and displays the details of the vehicles parked in occupied slots using the `displayDetails()` method (demonstrating polymorphism).
+        * `displayAvailableSlots()`: Displays the slot numbers of all currently available parking slots.
+
+4.  **User Interface (Abstraction):**
+    * Create a class named `ParkingLotSystem` that acts as the main entry point and provides a simple text-based user interface.
+    * This class should interact with the `ParkingLot` class to perform operations like:
+        * Adding new vehicles (Car, Motorcycle, Truck) to the parking lot.
+        * Removing vehicles from the parking lot.
+        * Displaying all occupied slots.
+        * Displaying all available slots.
+
+**In Depth Focus Areas:**
+
+* **Abstraction:** The `Vehicle` class provides an abstract representation of all vehicles, hiding the specific implementation details of fee calculation and detail display in its subclasses. The `ParkingLotSystem` abstracts the complex parking lot operations from the user.
+* **Encapsulation:** The `ParkingSlot` class encapsulates its data (slot number, occupancy, parked vehicle) and provides controlled access through public methods. The `ParkingLot` class also encapsulates the management of multiple parking slots.
+* **Inheritance:** The `Car`, `Motorcycle`, and `Truck` classes inherit common properties and behaviors from the `Vehicle` class, allowing for code reusability and a clear class hierarchy.
+* **Polymorphism:**
+    * **Method Overriding:** The `calculateParkingFee()` and `displayDetails()` methods are overridden in the subclasses to provide specific implementations for each vehicle type.
+    * **Method Invocation through Superclass Reference:** The `ParkingLot` class can store different types of `Vehicle` objects (Car, Motorcycle, Truck) in its slots. When calling `calculateParkingFee()` or `displayDetails()` on a `Vehicle` object retrieved from a slot, the appropriate method implementation based on the actual object type will be executed at runtime.
+
+This problem statement requires the application of all four core Java OOP concepts in a practical and meaningful way, allowing for a comprehensive demonstration of their principles. You will need to carefully design the classes, their attributes, and their methods to fulfill all the requirements. Remember to handle potential edge cases and exceptions appropriately.

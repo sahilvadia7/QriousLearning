@@ -1,0 +1,22 @@
+Library Management System
+Problem Statement
+Design and implement a basic library management system where members can borrow and return books. The system should maintain information about books, library members, and borrowing records.
+Requirements
+1. Classes to Implement:
+
+Book:
+
+Properties: id, title, author, genre, isAvailable, publishedYear
+Methods: getters/setters, displayInfo()
+
+
+Library:
+
+Properties: name, address, collection (array/list of books), members (array/list of members)
+Methods: addBook(), removeBook(), searchBookByTitle(), searchBookByAuthor(), displayAvailableBooks()
+
+
+Member:
+
+Properties: id, name, contactInfo, borrowedBooks (array/list)
+Methods: borrowBook(), returnBook(), viewBorrowedBooks()
