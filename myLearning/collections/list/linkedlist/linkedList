@@ -2,3 +2,7 @@
 
 - public class LinkedList<E> extends AbstractSequentialList<E>
                                         implements List<E>, Deque<E>, Cloneable, Serializable
+
+
+## Method's
+-

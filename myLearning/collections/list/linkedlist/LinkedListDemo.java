@@ -10,9 +10,30 @@ public class LinkedListDemo {
         flowers.add("Marigold");
         flowers.add("Sunflower");
         flowers.add("Hibiscus");
+        flowers.add("Hibiscus");
+        flowers.add("Lotus");
+
         flowers.add("Jasmine");
+        flowers.add("Jasmine");
+        flowers.add("Lotus");
+
         flowers.add("Daisy");
 
-        flowers.forEach(System.out.println);
+        flowers.offer("Tulip");
+        flowers.offerFirst("Marigold");
+        flowers.offerLast("Gardenia");
+        flowers.removeFirstOccurrence("Hibiscus");
+
+        flowers.forEach(System.out::println);
+
+        System.out.println("----- Peek -----");
+        System.out.println(flowers.peek());
+        System.out.println(flowers.peekFirst());
+        System.out.println(flowers.peekLast());
+
+        System.out.println("----- Poll -----");
+        System.out.println(flowers.poll());
+        System.out.println(flowers.pollFirst());
+        System.out.println(flowers.pollLast());
     }
 }

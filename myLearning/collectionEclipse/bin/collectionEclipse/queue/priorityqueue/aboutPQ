@@ -1,0 +1,14 @@
+# PriorityQueue
+
+- It use Queue so it follow FIFO.
+- Retrieves element natural order.
+- Provide Comparator at time of creation.
+- Element with lowest value has the highest Priority.
+- Change Behavior by providing Comparator.
+- Implemented using a binary heap.
+- When you need to process elements based on their priority.
+-  The default initial capacity is 11.
+
+Note 
+
+- only smallest value is priority. 

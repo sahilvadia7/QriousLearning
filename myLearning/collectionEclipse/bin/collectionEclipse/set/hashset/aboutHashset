@@ -1,0 +1,26 @@
+# HashSet
+
+- It store data in unordered.
+- It is Non-Synchronized.
+- HashSet uses a hash table(HashMap)
+- Automatically handle duplication
+- Fast Lookups.
+- Permit for null.
+- Implements Serializable and Cloneable.
+- The default initial capacity is 16.
+
+
+## Common Operations:
+
+- add(element): Adds an element to the HashSet.
+- contains(element): Checks if the HashSet contains a specific element.
+- remove(element): Removes an element from the HashSet.
+- clear(): Removes all elements from the HashSet.
+- size(): Returns the number of elements in the HashSet. 
+
+
+## When to Use a HashSet:
+
+- When you need to store a collection of unique elements.
+- When you prioritize fast lookups and set operations.
+- When the order of elements is not important.  

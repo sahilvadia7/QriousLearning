@@ -1,0 +1,8 @@
+# LinkedHashSet
+
+- The default initial capacity is 16. 
+- It use Hash table and doubly-linked list to trace order.
+- Ordered is maintain.
+- Time complexity O(1), slower than hashset because it use LinkedList.
+- Unique elements.
+- Allow null (1).

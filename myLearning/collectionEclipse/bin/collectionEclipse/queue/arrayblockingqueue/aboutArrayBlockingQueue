@@ -1,0 +1,16 @@
+# ArrayBlockingQueue
+
+- ArrayBlockingQueue is Fixed size while creation of the ArrayBlockingQueue you need to set size.
+- Duplication is allowed but not Null.
+
+## Method
+- add() for adding element
+- put() for adding element if it is out of space it block and wait for space.
+- poll() for delete element form queue, It return true if space is available else return false.
+- take() for delete element if not present in the queue it wait for something to add.
+ 
+ 
+ ## Use-case
+  - implementing controlled communication between threads in a multithreaded environment.
+  
+ 

@@ -6,7 +6,7 @@ import java.util.Spliterator;
 public class BasicList {
 
     public static void main(String[] args) {
-        List<String> carNames = new ArrayList<>();
+        ArrayList<String> carNames = new ArrayList<>();
         List<String> car1 = new ArrayList<>();
         List<String> car2 = new ArrayList<>();
 
@@ -37,6 +37,9 @@ public class BasicList {
             "car 1 containsAll car 2: " + car1.containsAll(car2)
         );
 
+        carNames.ensureCapacity(carNames.size() + 10);
+        System.out.println("Capacity: " + carNames.size());
+
         carNames.set(2, "BMW M8");
         Collections.sort(carNames);
 
@@ -59,7 +62,5 @@ public class BasicList {
         while (c1.tryAdvance(n -> System.out.print(n + ", ")));
         System.out.println();
         while (c2.tryAdvance(n -> System.out.print(n + ", ")));
-
-        carNames.trimToSize();
     }
 }

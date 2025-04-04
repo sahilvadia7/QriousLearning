@@ -1,0 +1,8 @@
+# ArrayDeque
+
+- Inherits methods from both `Queue` and `Deque`.
+- The default initial capacity is 16.
+- You can add, remove form both end.
+- it support FIFO and LIFO both.
+- Duplication allowed but Null is not allowed.
+- 

@@ -1,0 +1,11 @@
+# TreeSet
+
+- It use Red-Black tree for sorting the set.
+- It maintain ordered and sorted both.
+- provide comparator at creation.
+- Null & duplication is not allowed.
+- Logarithmic time complexity (O(log n)).
+- Not Synchronized.
+- Implements Cloneable and Serializable. 
+- Default capacity is empty;
+ 
