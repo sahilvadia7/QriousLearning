@@ -1,0 +1,8 @@
+🎯 Tasks to Solve Using Streams:
+
+Total Revenue: Calculate the total revenue from all delivered orders.
+Top Customer: Find the customer who has spent the most money.
+Popular Product: Find the product name that has been sold the most (by quantity).
+Monthly Sales: Count how many orders were placed in each month.
+Large Orders: Filter orders that contain at least one item where quantity > 5.
+Average Order Value: Compute average order value for delivered orders.

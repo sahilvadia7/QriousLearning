@@ -1,4 +1,4 @@
-package leetcode.arrays;
+package leetcode.arrays.findMedian;
 
 import java.util.LinkedList;
 import java.util.PriorityQueue;
