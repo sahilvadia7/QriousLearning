@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <style type="text/css">
+  /* style.css */
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom right, #1a1a1a, #333333, #4b0082, #000000);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  text-align: center;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2rem 3rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+}
+
+.card h1 span {
+  color: #c084fc; /* Soft purple */
+}
+
+.card p {
+  margin-top: 10px;
+  color: #ccc;
+  font-size: 1rem;
+}
+
+
+  
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>Welcome, <span id="email">userEmail</span> 👋</h1>
+      <p>You are now logged in.</p>
+    </div>
+  </div>
+  
+  <script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const userEmail = urlParams.get("email") || "Guest";
+  document.getElementById("email").textContent = userEmail;
+
+</script>
+
+
+</body>
+</html>

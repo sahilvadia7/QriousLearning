@@ -1,6 +1,8 @@
 package java8.streamapi.problemstatement;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class MainExe {
@@ -63,12 +65,8 @@ public class MainExe {
 								.sum();
 		
 		System.out.println("Total Revenue: "+totalRevenue);
-		
-		orders.stream()
-			.filter(Orders::isDelivered)
-			.flatMap(order -> order.getItem().stream())
-			
-			.forEach(System.out::println);
+	
+        
 	}
 }
 
