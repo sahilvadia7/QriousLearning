@@ -128,11 +128,11 @@
 %>
         <a href="dashboard.jsp">My Course</a>
 <%
-    } else {
+    } else if("ADMIN".equals(role1)){
 %>
         <a href="dashboard.jsp">Manage user</a>
 <%
-    }
+    }else { }
 %>
         <a href="profile.jsp">Profile</a>
         <a href="logout">Logout</a>

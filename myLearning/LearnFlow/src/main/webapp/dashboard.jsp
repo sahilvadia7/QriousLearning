@@ -160,6 +160,7 @@
     String role1 = (String) session.getAttribute("role");
     if ("STUDENT".equals(role1)) {
 %>
+		
         <a href="dashboard.jsp">My Learning</a>
 <%
     } else if ("INSTRUCTOR".equals(role1)) {

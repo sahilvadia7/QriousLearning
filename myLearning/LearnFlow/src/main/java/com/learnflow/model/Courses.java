@@ -22,6 +22,8 @@ public class Courses {
 	private List<String> language;
 	private Date created_at;
 	private Date updated_at;
+	private int studentCount;
+
 	
 	
 	public Courses() {
@@ -30,7 +32,7 @@ public class Courses {
 	
 	
 	public Courses(int course_id, String title, String description, Users instructor_id, Categories category_id,
-			int price, int discounted_price, double duration, List<String> language, Date created_at, Date updated_at) {
+			int price, int discounted_price, double duration, List<String> language, Date created_at, Date updated_at, int studentCount) {
 		super();
 		this.course_id = course_id;
 		this.title = title;
@@ -43,7 +45,18 @@ public class Courses {
 		this.language = language;
 		this.created_at = created_at;
 		this.updated_at = updated_at;
+		this.studentCount =studentCount;
 	}
+	public int getStudentCount() {
+		return studentCount;
+	}
+
+
+	public void setStudentCount(int studentCount) {
+		this.studentCount = studentCount;
+	}
+
+
 	public int getCourse_id() {
 		return course_id;
 	}

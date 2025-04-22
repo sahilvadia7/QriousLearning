@@ -70,6 +70,7 @@ public class UserRepository {
 
 	            if (rs.next()) {
 	                fetchUserD = new Users();
+	                fetchUserD.setUser_id(rs.getInt("user_id"));
 	                fetchUserD.setfirstname(rs.getString("firstname"));
 	                fetchUserD.setlastname(rs.getString("lastname"));
 	                fetchUserD.setUsername(rs.getString("username"));
@@ -124,6 +125,41 @@ public class UserRepository {
 	        
 	        return users;
 	    }
+	   
 
+	    public boolean deleteUserById(Integer id, HttpSession session) {
+	        boolean isDeleted = false;
+
+	     
+	        String DELETE_USER_SQL = "DELETE FROM users WHERE user_id = ?";
+
+	        try {
+	            Class.forName("org.postgresql.Driver");
+	            Connection connection = DriverManager.getConnection(URL, USER, PASS);
+	            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER_SQL);
+
+	            preparedStatement.setInt(1, id);
+	            int rowsAffected = preparedStatement.executeUpdate();
+
+	            if (rowsAffected > 0) {
+	                isDeleted = true;
+	            }
+	            
+	            List<Users> updatedUsers = getAllUsers(); 
+	            session.setAttribute("allUsers", updatedUsers);
+
+	            preparedStatement.close();
+	            connection.close();
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        
+
+	        return isDeleted;
+	    }
+
+	    
+	   
 
 }

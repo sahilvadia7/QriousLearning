@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.learnflow.model.Categories"%>
 <%@page import="com.learnflow.model.Users"%>
 <%@page import="com.learnflow.model.Reviews"%>
@@ -6,9 +7,15 @@
 
 <%
     Users currentUser = (Users) session.getAttribute("user");
-    List<Courses> instructorCourses = (List<Courses>) request.getAttribute("instructorCourses");
+List<Courses> instructorCourses = (List<Courses>) session.getAttribute("instructorCourses");
     List<Reviews> courseReviews = (List<Reviews>) request.getAttribute("courseReviews");
-
+    List<Categories> allCategoriesList = (List<Categories>) session.getAttribute("allCategories");
+    
+    System.out.println("in the top instructor jsp");
+    System.out.println(allCategoriesList);
+    if (allCategoriesList == null) {
+        allCategoriesList = new ArrayList<>();
+    }
 %>
 
 <!-- CSS -->
@@ -108,11 +115,53 @@
     }
 </style>
 
-<!-- PAGE WRAPPER -->
+<style>
+    .refresh-btn {
+        background-color: transparent;
+        color: #7c3aed;
+        border: 2px solid #7c3aed;
+        border-radius: 8px;
+        padding: 6px 12px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .refresh-btn:hover {
+        background-color: #7c3aed;
+        color: white;
+    }
+    
+  
+</style>
+
 <div class="page-wrapper">
 
-    <!-- Add Course Form -->
     <div class="card">
+    
+    <% 
+    List<String> errors = (List<String>) request.getAttribute("errors");
+    if (errors != null && !errors.isEmpty()) {
+%>
+    <div style="color: red; padding: 10px; border: 1px solid red; margin-bottom: 10px;">
+        <ul>
+        <% for (String err : errors) { %>
+            <li><%= err %></li>
+        <% } %>
+        </ul>
+    </div>
+<% } %>
+    
+<%
+    if (allCategoriesList == null || allCategoriesList.isEmpty()) {
+%>
+    <div style="color: red; padding: 10px; border: 1px solid red; margin-bottom: 10px;">
+        Categories not found. Please <a href="/categories">load categories</a>.
+    </div>
+<%
+    }
+%>
         <h3>Add New Course</h3>
         <form action="addCourse" method="post">
             <input type="text" name="title" placeholder="Course Title" required><br>
@@ -122,34 +171,62 @@
             <input type="number" name="duration" placeholder="Duration (hours)" step="0.1" required><br>
             <input type="text" name="language" placeholder="Languages (comma separated)" required><br>
             <select name="category_id" required>
-                <option value="">Select Category</option>
-				<%-- <% for() %> --%>
-            </select><br>
+    <option value="">Select Category</option>
+    <% for(Categories categorie : allCategoriesList) { %>
+        <option value="<%= categorie.getCategory_id() %>">
+            <%= categorie.getName() %>
+        </option>
+    <% } %>
+    
+    
+</select><br>
+
             <button class="btn">Upload Course</button>
         </form>
     </div>
 
-    <!-- Instructor Courses & Enrollments -->
-    <div class="card">
-        <h3>Your Courses & Enrollments</h3>
-        <table class="table">
-            <tr>
-                <th>Course</th>
-                <th>Students Enrolled</th>
-            </tr>
-            <% if (instructorCourses != null) {
-                for (Courses course : instructorCourses) { %>
-                    <tr>
-                        <td><%= course.getTitle() %></td>
-                        <%-- <td><%= course.getEnrolledCount() %></td> --%>
-                    </tr>
-            <%  } } else { %>
-                <tr><td colspan="2">No courses available</td></tr>
-            <% } %>
-        </table>
-    </div>
 
-    <!-- Latest Reviews -->
+<div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3>Your Courses & Enrollments</h3>
+        <form action="fetchInstructorCourse" method="Post" style="margin: 0;">
+            <button class="refresh-btn" type="submit" name="refresh" value="true"> Refresh</button>
+        </form>
+    </div>
+    <table class="table">
+        <tr>
+            <th>Course</th>
+            <th>Description</th>
+            <th>Students Enrolled</th>
+            <th>Actions</th>
+            
+        </tr>
+        <% if (instructorCourses != null) {
+            for (Courses course : instructorCourses) { %>
+                <tr>
+                    <td><%= course.getTitle() %></td>
+                    <td> <%= course.getDescription() %> </td>
+                     <td><%= course.getStudentCount() %></td>
+                    <td> 
+                    <form action="editCourse" method="get">
+					    <input type="hidden" name="courseId" value="<%= course.getCourse_id() %>">
+					    <button class="edit-button">Edit</button>
+					</form>
+
+					<form action="deleteCourse" method="post" onsubmit="return confirm('Are you sure?');">
+					    <input type="hidden" name="courseId" value="<%= course.getCourse_id() %>">
+					    <button class="delete-button">Delete</button>
+					</form>
+
+                     </td>
+                </tr>
+        <%  } } else { %>
+            <tr><td colspan="2">No courses available</td></tr>
+        <% } %>
+    </table>
+</div>
+
+
     <div class="card">
         <h3>Latest Course Reviews</h3>
         <ul>

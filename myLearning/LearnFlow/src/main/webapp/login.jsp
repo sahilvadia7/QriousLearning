@@ -119,11 +119,24 @@
             <label for="password">Password</label>
             <input type="password" id="password" name="loginPassword" required/>
         </div>
+        
+        <% 
+            String loginError = (String) request.getAttribute("loginError");
+            if (loginError != null && !loginError.isEmpty()) {
+        %>
+        <div style="color: red; padding: 10px; margin-bottom: 10px;">
+            <%= loginError %>
+        </div>
+        <% } %>
+
         <button type="submit" class="submit-btn">Login</button>
+
         <div class="register-link">
             <p>Don’t have an account? <a href="register.jsp">Register here</a></p>
+            <p>Go Without Login? <a href="explore.jsp">Explore Courses</a></p>
         </div>
     </form>
 </div>
+
 </body>
 </html>

@@ -19,11 +19,12 @@ public class CourseRepository {
         List<Courses> courses = new ArrayList<>();
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASS)) {
-            String sql = "SELECT c.course_id, c.title, COUNT(enrollment.student_id) AS student_count "
-                       + "FROM courses c "
-                       + "JOIN enrollments enrollment ON c.course_id = enrollment.course_id "
-                       + "WHERE c.instructor_id = ? "
-                       + "GROUP BY c.course_id, c.title";
+            String sql = "SELECT c.course_id, c.title, c.description, c.instructor_id, c.category_id, " +
+                         "c.price, c.discounted_price, c.duration, c.language, " +
+                         "(SELECT COUNT(*) FROM enrollments e WHERE e.course_id = c.course_id) AS student_count " +
+                         "FROM courses c " +
+                         "WHERE c.instructor_id = ?";
+
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, instructorId);
 
@@ -32,7 +33,8 @@ public class CourseRepository {
                 Courses course = new Courses();
                 course.setCourse_id(rs.getInt("course_id"));
                 course.setTitle(rs.getString("title"));
-//                course.setStudentCount(rs.getInt("student_count"));
+                course.setDescription(rs.getString("description"));
+                course.setStudentCount(rs.getInt("student_count")); 
                 courses.add(course);
             }
         } catch (SQLException e) {
@@ -62,6 +64,7 @@ public class CourseRepository {
                 Courses course = new Courses();
 
                 course.setCourse_id(rs.getInt("course_id"));
+                
                 course.setTitle(rs.getString("title"));
                 course.setDescription(rs.getString("description"));
 
@@ -88,6 +91,9 @@ public class CourseRepository {
 
                 course.setCreated_at(rs.getDate("created_at"));
                 course.setUpdated_at(rs.getDate("updated_at"));
+
+                
+//                System.out.println("Raw courseID:"+course.getCourse_id());
 
                 courses.add(course);
             }
@@ -125,6 +131,106 @@ public class CourseRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println("controller in repo");
+        for(Courses cours : courses) {
+        	System.out.println(cours);
+        }
         return courses;
     }
+
+
+    public Courses getCourseById(int id) {
+        Courses course = null;
+
+        String query = "SELECT * FROM courses WHERE course_id = ?";
+
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection(URL, USER, PASS);
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                course = new Courses();
+                course.setCourse_id(rs.getInt("course_id"));
+                course.setTitle(rs.getString("title"));
+                course.setDescription(rs.getString("description"));
+                
+                Categories categories = new Categories();
+                categories.setCategory_id(rs.getInt("category_id"));
+                course.setCategory_id(categories);
+                
+                Users instructor = new Users();
+                instructor.setUser_id(rs.getInt("instructor_id"));
+                course.setInstructor_id(instructor);
+               
+                course.setPrice(rs.getInt("price"));
+                course.setDuration(rs.getInt("duration"));
+                course.setCreated_at(rs.getTimestamp("created_at"));
+            }
+
+            rs.close();
+            ps.close();
+            connection.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+       
+        return course;
+    }
+
+
+
+        public boolean addCourses(Courses course) {
+//        	boolean isAdded = false;
+        	
+        	String ADD_COURSE_SQL = "INSERT INTO courses " +
+        	        "(title, description, instructor_id, category_id, price, discounted_price, duration, language, created_at, updated_at) " +
+        	        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)";
+
+
+            try {
+                Class.forName("org.postgresql.Driver");
+                Connection conn = DriverManager.getConnection(URL, USER, PASS);
+
+                PreparedStatement ps = conn.prepareStatement(ADD_COURSE_SQL, Statement.RETURN_GENERATED_KEYS);
+
+                ps.setString(1, course.getTitle());
+                ps.setString(2, course.getDescription());
+                ps.setInt(3, course.getInstructor_id().getUser_id());
+                ps.setInt(4, course.getCategory_id().getCategory_id());
+                ps.setDouble(5, course.getPrice());
+                ps.setDouble(6, course.getDiscounted_price());
+                ps.setDouble(7, course.getDuration());
+                List<String> languages = course.getLanguage(); 
+                String languageStr = String.join(",", languages); 
+                ps.setString(8, languageStr); 
+                
+                int rows = ps.executeUpdate();
+
+                if (rows > 0) {
+                    ResultSet rs = ps.getGeneratedKeys();
+                    if (rs.next()) {
+                        int generatedId = rs.getInt(1);
+                        course.setCourse_id(generatedId);
+                    }
+                    rs.close();
+                }
+
+                ps.close();
+                conn.close();
+
+                return true;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return false;
+        }
+
 }

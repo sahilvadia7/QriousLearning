@@ -36,4 +36,57 @@
   </servlet-mapping>
   
   
+  <!-- Action controller-->
+  
+  <servlet> 
+  <servlet-name>action</servlet-name>
+  <servlet-class>com.learnflow.controller.ActionController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>action</servlet-name>
+  <url-pattern>/requestToUserAction</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+  <servlet-name>course</servlet-name>
+  <servlet-class>com.learnflow.controller.CourseController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>course</servlet-name>
+  <url-pattern>/addCourse</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  <servlet-name>course</servlet-name>
+  <url-pattern>/fetchInstructorCourse</url-pattern>
+  </servlet-mapping>
+
+  <!-- Categories-->
+  
+  <servlet>
+  <servlet-name>categories</servlet-name>
+  <servlet-class>com.learnflow.controller.CategoryController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>categories</servlet-name>
+  <url-pattern>/categories</url-pattern>
+  </servlet-mapping>
+
+
+
+<servlet>
+<servlet-name>studentActions</servlet-name>
+<servlet-class>com.learnflow.controller.EnrollController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>studentActions</servlet-name>
+<url-pattern>/studentActions</url-pattern>
+</servlet-mapping>
+
 </web-app>
+

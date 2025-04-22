@@ -1,3 +1,4 @@
+<%@page import="com.learnflow.model.Courses"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.stream.Collectors"%>
 <%@page import="com.learnflow.enums.Role"%>
@@ -6,6 +7,7 @@
 <% 
 
 List<Users> allUsers = (List<Users>) session.getAttribute("allUsers");
+List<Courses> getAllCourse = (List<Courses>) session.getAttribute("allCourse");
 
 long studentCount = 0;
 long instructorCount = 0;
@@ -13,6 +15,7 @@ long courseCount =0;
 
 List<Users> students  = new ArrayList<>();
 List<Users> instructors = new ArrayList<>();
+List<Courses> courses = new  ArrayList<>();
 
 if (allUsers != null) {
     studentCount = allUsers.stream()
@@ -34,28 +37,19 @@ if (allUsers != null) {
     
 }
 
+if (getAllCourse != null) {
+    courses = getAllCourse;
+    courseCount = courses.size();
+}
 
 %>
-<!-- <div class="card">
-    <h3>Manage Students</h3>
-    <ul>
-        <li>Sahil - 4 Enrollments</li>
-        <li>Priya - 3 Enrollments</li>
-    </ul>
-</div>
-
-
- -->
- 
  
  <div class="card">
     <h3>Platform Summary</h3>
     <p>Total Students: <%= studentCount %></p>
     <p>Total Instructor: <%= instructorCount %></p>
-    
-    <p>Total Courses: 85</p>
-<!--     <p>Total Instructors: 25</p>
- --></div>
+    <p>Total Courses: <%= courseCount %></p>
+</div>
  
  
 <div class="card">
@@ -82,13 +76,13 @@ if (allUsers != null) {
                 <td><%= u.getUsername() %></td>
                 <td><%= u.getRole() %></td>
                 <td>
-                    <form action="updateUser" method="get" style="display:inline;">
-                        <input type="hidden" name="userId" value="<%= u.getUser_id() %>"/>
+                    <form action="editUser" method="get" style="display:inline;">
+                        <input type="hidden" name="UuserId" value="<%= u.getUser_id() %>"/>
                         <button class="btn" type="submit">Edit</button>
                     </form>
                     
                     <form action="deleteUser" method="post" style="display:inline;">
-                        <input type="hidden" name="userId" value="<%= u.getUser_id() %>"/>
+                        <input type="hidden" name="DuserId" value="<%= u.getUser_id() %>"/>
                         <button class="btn" style="background-color:red;" type="submit">Delete</button>
                     </form>
                 </td>
